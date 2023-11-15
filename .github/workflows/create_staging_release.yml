@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: "develop"
+          fetch-depth: 0
       - name: Check if main branch has new commits
         id: check_commits
         run: |
