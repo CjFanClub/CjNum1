@@ -21,13 +21,11 @@ jobs:
       - name: Check if main branch has new commits
         id: check_commits
         run: |
-              git fetch origin staging:staging
-              git fetch origin develop:develop
-              if [[ -z "$(git log staging..develop)" ]]; then
-                echo "has_commits=false" >> $GITHUB_ENV
-              else
-                echo "has_commits=true" >> $GITHUB_ENV
-              fi
+          if [[ "$(git rev-parse origin/staging)" == "$(git rev-parse origin/develop)" ]]; then
+            echo "has_commits=false" >> $GITHUB_ENV
+          else
+            echo "has_commits=true" >> $GITHUB_ENV
+          fi
       - name: Create pull request
         if: env.has_commits == 'true'
         shell: bash
