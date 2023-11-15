@@ -25,10 +25,10 @@ jobs:
           git diff --quiet origin/staging origin/develop
           if [ $? -eq 1 ]; then
             echo "has_diff=true" >> $GITHUB_ENV
+            exit 0
           else
             echo "has_diff=false" >> $GITHUB_ENV
           fi
-          exit 0
       - name: Create pull request
         if: env.has_diff == 'true'
         shell: bash
