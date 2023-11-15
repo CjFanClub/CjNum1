@@ -28,6 +28,7 @@ jobs:
           else
             echo "has_diff=false" >> $GITHUB_ENV
           fi
+          exit 0
       - name: Create pull request
         if: env.has_diff == 'true'
         shell: bash
