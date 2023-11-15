@@ -22,11 +22,11 @@ jobs:
         id: check_commits
         run: |
           git fetch origin
-          git diff origin/staging origin/develop --exit-code
-          if [ $? -eq 0 ]; then
-            echo "has_diff=false" >> $GITHUB_ENV
-          else
+          git diff --quiet origin/staging origin/develop
+          if [ $? -eq 1 ]; then
             echo "has_diff=true" >> $GITHUB_ENV
+          else
+            echo "has_diff=false" >> $GITHUB_ENV
           fi
       - name: Create pull request
         if: env.has_diff == 'true'
