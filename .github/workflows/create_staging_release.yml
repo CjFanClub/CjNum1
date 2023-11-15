@@ -23,7 +23,7 @@ jobs:
         run: |
               git fetch origin staging:staging
               git fetch origin develop:develop
-              if git diff --quiet staging develop; then
+              if [[ -z "$(git log staging..develop)" ]]; then
                 echo "has_commits=false" >> $GITHUB_ENV
               else
                 echo "has_commits=true" >> $GITHUB_ENV
