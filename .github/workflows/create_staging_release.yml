@@ -22,8 +22,13 @@ jobs:
         id: check_commits
         run: |
           git fetch origin
-          FUCK=$(git diff --exit-code origin/develop..origin/staging)
+          FUCK=$(git diff --name-only origin/develop..origin/staging)
           echo "$FUCK"
+          if [ -z "$FUCK" ]; then
+            echo "has_commits=false"
+          else
+            echo "has_commits=true"
+          fi
           # if [ "$SOURCE_BRANCH" == "$TARGET_BRANCH" ]; then
           #   echo "has_commits=false" >> $GITHUB_ENV
           # else
