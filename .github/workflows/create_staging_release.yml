@@ -18,26 +18,17 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: "develop"
-      - name: Check if main branch has new commits
-        id: check_commits
-        run: |
-          git fetch origin
-          SOURCE_BRANCH=$(git rev-parse origin/develop)
-          TARGET_BRANCH=$(git rev-parse origin/staging)
-          if [ "$SOURCE_BRANCH" == "$TARGET_BRANCH" ]; then
-            echo "has_commits=false" >> $GITHUB_ENV
-          else
-            echo "has_commits=true" >> $GITHUB_ENV
-          fi
-      - name: Create pull request
-        if: env.has_commits == 'true'
+      - name: Create pull request and tag
         shell: bash
         # まずDraft状態で作成する。
         run: |
           PR_TITLE="Release at $(TZ='JST-9' date --date "8 days" +%Y.%m.%d)"
+          TAG_VERSION=express_$(date --date "8 days" +%Y%m%d)
           ASSIGNEE="ji-liu"
           REVIEWER="ji-liu"
 
           gh pr create -d --base "staging" --title "$PR_TITLE" --body "Auto-generated pull request, not generated " --assignee "$ASSIGNEE" --reviewer "$REVIEWER"
+          git tag $TAG_VERSION -m "Release $TAG_VERSION"
+          git push origin $TAG_VERSION
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
