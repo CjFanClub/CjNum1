@@ -21,16 +21,13 @@ jobs:
       - name: Check if main branch has new commits
         id: check_commits
         run: |
-          git fetch origin
-          git diff --quiet origin/staging origin/develop
-          if [ $? -eq 1 ]; then
-            echo "has_diff=true" >> $GITHUB_ENV
-            exit 0
+          if [[ "$(git rev-parse origin/staging)" == "$(git rev-parse origin/develop)" ]]; then
+            echo "has_commits=false" >> $GITHUB_ENV
           else
-            echo "has_diff=false" >> $GITHUB_ENV
+            echo "has_commits=true" >> $GITHUB_ENV
           fi
       - name: Create pull request
-        if: env.has_diff == 'true'
+        if: env.has_commits == 'true'
         shell: bash
         # まずDraft状態で作成する。
         run: |
