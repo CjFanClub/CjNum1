@@ -21,6 +21,7 @@ jobs:
       - name: Check if main branch has new commits
         id: check_commits
         run: |
+          git fetch origin
           if [[ "$(git rev-parse origin/staging)" == "$(git rev-parse origin/develop)" ]]; then
             echo "has_commits=false" >> $GITHUB_ENV
           else
