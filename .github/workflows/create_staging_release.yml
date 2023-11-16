@@ -21,7 +21,6 @@ jobs:
       - name: Check if main branch has new commits
         id: check_commits
         run: |
-          git fetch origin
           SOURCE_BRANCH=$(git rev-parse origin/develop)
           TARGET_BRANCH=$(git rev-parse origin/develop)
           if [ "$SOURCE_BRANCH" == "$TARGET_BRANCH" ]; then
