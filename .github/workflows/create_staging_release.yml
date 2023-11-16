@@ -22,7 +22,7 @@ jobs:
         id: check_commits
         run: |
           SOURCE_BRANCH=$(git rev-parse origin/develop)
-          TARGET_BRANCH=$(git rev-parse origin/develop)
+          TARGET_BRANCH=$(git rev-parse origin/staging)
           if [ "$SOURCE_BRANCH" == "$TARGET_BRANCH" ]; then
             echo "has_commits=false" >> $GITHUB_ENV
           else
