@@ -22,10 +22,11 @@ jobs:
         id: check_commits
         run: |
           git fetch origin
-          SOURCE_BRANCH=$(git rev-parse origin/develop)
-          TARGET_BRANCH=$(git rev-parse origin/staging)
-          echo "$SOURCE_BRANCH"
-          echo "$TARGET_BRANCH"
+          # SOURCE_BRANCH=$(git rev-parse origin/develop)
+          # TARGET_BRANCH=$(git rev-parse origin/staging)
+          # echo "$SOURCE_BRANCH"
+          # echo "$TARGET_BRANCH"
+          echo diff --exit-code origin/develop..origin/staging
           # if [ "$SOURCE_BRANCH" == "$TARGET_BRANCH" ]; then
           #   echo "has_commits=false" >> $GITHUB_ENV
           # else
