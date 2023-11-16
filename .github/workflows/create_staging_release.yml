@@ -22,8 +22,7 @@ jobs:
         id: check_commits
         run: |
           git fetch origin
-          CHANGES=$(git log --oneline origin/develop..origin/staging)
-          if [[ $? -eq 0 && -n "$CHANGES" ]]; then
+          if [[ "$(git rev-parse origin/staging)" == "$(git rev-parse origin/develop)" ]]; then
             echo "has_commits=false" >> $GITHUB_ENV
           else
             echo "has_commits=true" >> $GITHUB_ENV
