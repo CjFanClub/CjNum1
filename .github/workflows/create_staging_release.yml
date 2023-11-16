@@ -22,7 +22,7 @@ jobs:
         id: check_commits
         run: |
           CHANGES=$(git log --oneline origin/develop..origin/staging)
-          if [[ -z "$CHANGES" ]]; then
+          if [[ $? -eq 0 && -n "$CHANGES" ]]; then
             echo "has_commits=false" >> $GITHUB_ENV
           else
             echo "has_commits=true" >> $GITHUB_ENV
