@@ -12,6 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     # Job 全体のタイムアウト時間を指定
     timeout-minutes: 5
+    permissions:
+      actions: write
+      checks: write
+      contents: write
+      deployments: write
+      issues: write
+      packages: write
+      pull-requests: write
+      repository-projects: write
+      security-events: write
+      statuses: write
     steps:
       - name: Set up Git 
         run: |
