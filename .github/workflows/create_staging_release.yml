@@ -55,8 +55,8 @@ jobs:
           REVIEWER="ji-liu"
 
           gh pr create -d --base "staging" --title "$PR_TITLE" --body "Auto-generated pull request, not generated " --assignee "$ASSIGNEE" --reviewer "$REVIEWER"
-          git tag env.TAG_VERSION -m "Release env.TAG_VERSION"
-          git push origin env.TAG_VERSION
+          git tag $TAG_VERSION -m "Release $TAG_VERSION"
+          git push origin $TAG_VERSION
 
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
@@ -64,7 +64,7 @@ jobs:
         if: env.has_commits == 'true'
         run: |
           RELEASE_NAME=express_$(date --date "8 days" +%Y%m%d)
-          gh release create env.TAG_VERSION ./ -t "$RELEASE_NAME" -n "Release notes for env.TAG_VERSION"
+          gh release create $TAG_VERSION ./ -t "$RELEASE_NAME" -n "Release notes for $TAG_VERSION"
 
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
