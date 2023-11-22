@@ -13,10 +13,10 @@ jobs:
     # Job 全体のタイムアウト時間を指定
     timeout-minutes: 5
     permissions:
-      actions: write
+      # actions: write
       checks: write
       contents: write
-      deployments: write
+      # deployments: write
       # issues: write
       # packages: write
       # pull-requests: write
