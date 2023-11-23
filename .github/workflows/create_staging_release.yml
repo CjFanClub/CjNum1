@@ -25,7 +25,7 @@ jobs:
         with:
           ref: "develop"
 
-      - name: Check if main branch has new commits
+      - name: Check if develop branch has new commits
         id: check_commits
         run: |
           git fetch origin
@@ -53,7 +53,7 @@ jobs:
 
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          
+
       - name: create release
         if: env.has_commits == 'true'
         run: |
