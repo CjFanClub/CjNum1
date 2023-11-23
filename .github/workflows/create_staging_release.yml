@@ -12,18 +12,19 @@ jobs:
     runs-on: ubuntu-latest
     # Job 全体のタイムアウト時間を指定
     timeout-minutes: 5
-    # permissions:
-      # contents: write
+
     steps:
       - name: Set up Git identity
         run: |
           git config --global user.name ${{ secrets.GIT_USER_NAME }}
           git config --global user.email ${{ secrets.GIT_USER_EMAIL }}
+
       # 開発用ブランチを指定
       - name: checkout
         uses: actions/checkout@v4
         with:
           ref: "develop"
+
       - name: Check if main branch has new commits
         id: check_commits
         run: |
@@ -34,6 +35,7 @@ jobs:
           else
             echo "has_commits=true" >> $GITHUB_ENV
           fi
+
       - name: Create pull request and tag
         if: env.has_commits == 'true'
         shell: bash
@@ -51,6 +53,7 @@ jobs:
 
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          
       - name: create release
         if: env.has_commits == 'true'
         run: |
