@@ -62,9 +62,8 @@ jobs:
 
         uses: release-drafter/release-drafter@v5
         with:
-          tag: $TAG_VERSION
-          name: $TAG_VERSION
-          version: ${{ env.RELEASE_TAG }}
+          tag: ${{ env.TAG_VERSION }}
+          name: ${{ env.TAG_VERSION }}
           publish: false
 
         env:
