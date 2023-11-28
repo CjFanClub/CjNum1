@@ -13,7 +13,7 @@ categories:
       - '監視エラー'
   - title: '監視エラー'
     labels:
-      - "*"
+      - '.*'
 change-title-escapes: '\<*_&'
 exclude-labels:
   - 'release'
