@@ -11,26 +11,11 @@ categories:
   - title: '監視エラー'
     labels:
       - '監視エラー'
+  - title: '監視エラー'
+    labels:
+      - '*'
 change-title-escapes: '\<*_&'
 exclude-labels:
   - 'release'
 template: |
-   ## 機能追加
-
-   $CHANGES['機能追加']
-
-   ## 機能改善
-
-   $CHANGES['機能改善']
-
-   ## 不具合修正
-
-   $CHANGES['不具合修正']
-
-   ## 監視エラー
-
-   $CHANGES['監視エラー']
-
-   ## その他の変更
-
-   $CHANGES['その他の変更']
+   $CHANGES
