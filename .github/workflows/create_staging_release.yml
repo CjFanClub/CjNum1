@@ -57,7 +57,7 @@ jobs:
       - name: create release and release note
         if: env.has_commits == 'true'
         # run: |
-        #   RELEASE_NAME=express_$(date --date "8 days" +%Y%m%d)
+        #   RELEASE_NAME=express_$(date --date "8 days" +%Y%m%d_%H%M%S)
         #   gh release create $TAG_VERSION -t "$RELEASE_NAME" -n --draft
 
         uses: release-drafter/release-drafter@v5
