@@ -11,9 +11,9 @@ categories:
   - title: '監視エラー'
     labels:
       - '監視エラー'
-  - title: '監視エラー'
+  - title: 'その他の変更'
     labels:
-      - '*'
+      - '.*'
 change-title-escapes: '\<*_&'
 exclude-labels:
   - 'release'
