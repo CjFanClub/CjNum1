@@ -14,10 +14,10 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      # - name: Set up Git identity
-      #   run: |
-      #     git config --global user.name ${{ secrets.GIT_USER_NAME }}
-      #     git config --global user.email ${{ secrets.GIT_USER_EMAIL }}
+      - name: Set up Git identity
+        run: |
+          git config --global user.name ${{ secrets.GIT_USER_NAME }}
+          git config --global user.email ${{ secrets.GIT_USER_EMAIL }}
 
       # 開発用ブランチを指定
       - name: checkout
@@ -54,11 +54,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
-      - name: create release
+      - name: create release and release note
         if: env.has_commits == 'true'
         run: |
           RELEASE_NAME=express_$(date --date "8 days" +%Y%m%d)
-          gh release create $TAG_VERSION -t "$RELEASE_NAME" -n "Release notes for $TAG_VERSION" --draft
+          gh release create $TAG_VERSION -t "$RELEASE_NAME" -n --draft
 
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
