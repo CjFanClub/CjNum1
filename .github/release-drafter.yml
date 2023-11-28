@@ -1,18 +1,16 @@
-name-template: '$TAG_VERSION'
-tag-template: '$TAG_VERSION'
 categories:
-  - title: 'Features'
+  - title: '機能追加'
     labels:
-      - 'feature'
-      - 'enhancement'
-  - title: 'Bug Fixes'
+      - '機能追加'
+  - title: '機能改善'
     labels:
-      - 'fix'
-      - 'bugfix'
-      - 'bug'
-  - title: 'Maintenance'
+      - '機能改善'
+  - title: '不具合修正'
     labels:
-      - 'chore'
+      - '不具合修正'
+  - title: '監視エラー'
+    labels:
+      - '監視エラー'
 change-title-escapes: '\<*_&'
 exclude-labels:
   - 'exclude from changelog'
