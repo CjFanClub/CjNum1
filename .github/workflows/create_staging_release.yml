@@ -47,7 +47,7 @@ jobs:
           ASSIGNEE="ji-liu"
           REVIEWER="ji-liu"
 
-          gh pr create -d --base "staging" --title "$PR_TITLE" --body "Auto-generated pull request, not generated " --assignee "$ASSIGNEE" --reviewer "$REVIEWER"
+          gh pr create -d --base "staging" --title "$PR_TITLE" --body "Auto-generated pull request, not generated " --assignee "$ASSIGNEE" --reviewer "$REVIEWER" --label "release"
           git tag $TAG_VERSION -m "Release $TAG_VERSION"
           git push origin $TAG_VERSION
 
