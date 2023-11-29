@@ -48,6 +48,7 @@ jobs:
       - name: Get the commit of the latest release tag
         id: tag_commit
         run: |
+          git fetch --tags
           TAG_COMMIT=$(git rev-list -n 1 ${{ env.LATEST_TAG }})
           echo "TAG_COMMIT=${TAG_COMMIT}" >> $GITHUB_ENV
 
