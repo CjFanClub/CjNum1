@@ -26,7 +26,7 @@ jobs:
           ref: "develop"
 
       - name: Get the latest commit on release/V2.10
-        id: release/V2.10_commit
+        id: branch_commit
         run: |
           git fetch origin
           BRANCH_COMMIT=$(git rev-parse origin/develop)
