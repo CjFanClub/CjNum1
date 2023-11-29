@@ -62,7 +62,7 @@ jobs:
           if [ "${{env.BRANCH_COMMIT }}" = "${{ env.TAG_COMMIT }}" ]; then
             echo "has_commits=false" >> $GITHUB_ENV
           else
-            echo "has_commits=false" >> $GITHUB_ENV
+            echo "has_commits=true" >> $GITHUB_ENV
           fi
 
       # - name: Check if develop branch has new commits
