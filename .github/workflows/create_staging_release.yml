@@ -32,43 +32,25 @@ jobs:
           BRANCH_COMMIT=$(git rev-parse HEAD)
           echo "BRANCH_COMMIT=${BRANCH_COMMIT}" >> $GITHUB_ENV
 
-      # - name: Get latest release tag
-      #   id: get_latest_release_tag
-      #   run: |
-      #      # Get the latest release information using GitHub REST API
-      #      LATEST_RELEASE=$(curl -sH "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-      #               "https://api.github.com/repos/${{ github.repository }}/releases/latest")
-
-      #      LATEST_TAG=$(echo "$LATEST_RELEASE" | jq -r '.tag_name')
-
-      #      echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
-      #   shell: bash
-
-
-      # - name: Get the commit of the latest release tag
-      #   id: tag_commit
-      #   run: |
-      #     git fetch --tags
-      #     TAG_COMMIT=$(git rev-parse ${{ env.LATEST_TAG }})
-      #     echo "TAG_COMMIT=${TAG_COMMIT}" >> $GITHUB_ENV
-      - name: Get latest release tag and commit
-        id: get_tag_commit
+      - name: Get latest release tag
+        id: get_latest_release_tag
         run: |
-          # Get the latest release information using GitHub REST API
-          LATEST_RELEASE=$(curl -sH "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+           # Get the latest release information using GitHub REST API
+           LATEST_RELEASE=$(curl -sH "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
                     "https://api.github.com/repos/${{ github.repository }}/releases/latest")
 
-          LATEST_TAG=$(echo "$LATEST_RELEASE" | jq -r '.tag_name')
+           LATEST_TAG=$(echo "$LATEST_RELEASE" | jq -r '.tag_name')
 
-          echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
-
-          # Fetch tags to ensure we have the latest information
-          git fetch --tags
-
-          # Get the commit of the latest release tag
-          TAG_COMMIT=$(git rev-parse $LATEST_TAG)
-          echo "TAG_COMMIT=${TAG_COMMIT}" >> $GITHUB_ENV
+           echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
         shell: bash
+
+
+      - name: Get the commit of the latest release tag
+        id: tag_commit
+        run: |
+          git fetch --tags
+          TAG_COMMIT=$(git rev-parse ${{ env.LATEST_TAG }})
+          echo "TAG_COMMIT=${TAG_COMMIT}" >> $GITHUB_ENV
 
       # - name: Get the latest release tag
       #   id: latest_tag
