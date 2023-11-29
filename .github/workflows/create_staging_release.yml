@@ -48,7 +48,7 @@ jobs:
       - name: Get the commit of the latest release tag
         id: tag_commit
         run: |
-          "TAG_COMMIT=$(git rev-parse ${{ env.LATEST_TAG }})
+          TAG_COMMIT=$(git rev-parse ${{ env.LATEST_TAG }})
           echo "TAG_COMMIT=${TAG_COMMIT}" >> $GITHUB_ENV
 
       # - name: Get the latest release tag
