@@ -1,0 +1,25 @@
+name: Delete Release
+
+on:
+  delete:
+    paths:
+      - 'refs/tags/*'
+
+jobs:
+  delete_release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Delete Release
+        run: |
+          TAG_NAME=$(echo "${GITHUB_REF#refs/tags/}")
+          RELEASE_ID=$(curl -sH "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                        "https://api.github.com/repos/${{ github.repository }}/releases/tags/$TAG_NAME" | jq -r '.id')
+
+          if [ -n "$RELEASE_ID" ]; then
+            curl -X DELETE -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              "https://api.github.com/repos/${{ github.repository }}/releases/$RELEASE_ID"
+          fi
