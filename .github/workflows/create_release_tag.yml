@@ -79,6 +79,11 @@ jobs:
       #       echo "has_commits=true" >> $GITHUB_ENV
       #     fi
 
+      - name: Debug GitHub Token Identity
+        run: |
+          git config --global user.email
+          git config --global user.name
+
       - name: Create tag
         if: env.has_commits == 'true'
         shell: bash
