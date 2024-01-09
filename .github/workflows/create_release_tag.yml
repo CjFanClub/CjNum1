@@ -81,8 +81,7 @@ jobs:
 
       - name: Debug GitHub Token Identity
         run: |
-          git config --global user.email
-          git config --global user.name
+          git config --list --global
 
       - name: Create tag
         if: env.has_commits == 'true'
