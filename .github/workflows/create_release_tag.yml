@@ -79,13 +79,10 @@ jobs:
       #       echo "has_commits=true" >> $GITHUB_ENV
       #     fi
 
-      - name: Debug GitHub Token Identity
-        run: |
-          git config --list --global
-
       - name: Create tag
         if: env.has_commits == 'true'
-        shell: bash
+        # shell: bash
+        # uses: actions/checkout@v4
         run: |
           TAG_VERSION=express_$(date --date "8 days" +%Y%m%d)
           echo "TAG_VERSION=${TAG_VERSION}" >> $GITHUB_ENV
