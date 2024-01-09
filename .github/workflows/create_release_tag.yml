@@ -24,7 +24,6 @@ jobs:
         with:
           ref: "develop"
           token: ${{ secrets.GITHUB_TOKEN }}
-          persist-credentials: false
 
       - name: Get the latest commit on release/V2.10
         id: branch_commit
@@ -87,8 +86,8 @@ jobs:
           TAG_VERSION=express_$(date --date "8 days" +%Y%m%d)
           echo "TAG_VERSION=${TAG_VERSION}" >> $GITHUB_ENV
 
-          git tag $TAG_VERSION -m "Release $TAG_VERSION" --local
-          git push origin $TAG_VERSION --local
+          git tag $TAG_VERSION -m "Release $TAG_VERSION"
+          git push origin $TAG_VERSION
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
