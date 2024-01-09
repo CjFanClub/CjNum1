@@ -89,7 +89,7 @@ jobs:
           git push origin $TAG_VERSION
 
         env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: create release and release note
         if: env.has_commits == 'true'
@@ -101,4 +101,4 @@ jobs:
           publish: false
 
         env:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
