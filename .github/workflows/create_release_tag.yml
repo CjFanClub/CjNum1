@@ -20,10 +20,12 @@ jobs:
 
       # 開発用ブランチを指定
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           ref: "develop"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          # token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get the latest commit on release/V2.10
         id: branch_commit
