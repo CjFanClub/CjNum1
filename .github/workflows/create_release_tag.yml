@@ -90,7 +90,7 @@ jobs:
           git config --local user.email "${GITHUB_EMAIL}"
           git config --local user.name "${GITHUB_NAME}"
           
-          git tag $TAG_VERSION -m "Release $TAG_VERSION" --tagger="ji-liu <ji_liu@dreamarts.co.jp>"
+          git tag $TAG_VERSION -m "Release $TAG_VERSION"
           git push origin $TAG_VERSION
 
         env:
