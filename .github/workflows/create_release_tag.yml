@@ -37,7 +37,7 @@ jobs:
       - name: Get latest release tag
         id: get_latest_release_tag
         run: |
-           LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+           LATEST_TAG=$(git for-each-ref --sort=-taggerdate --format='%(refname:lstrip=2)' refs/tags | head -n 1)
 
            echo "LATEST_TAG=${LATEST_TAG}" >> $GITHUB_ENV
         shell: bash
